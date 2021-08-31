@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Safintim <timurtlt96@mail.ru>"]
 packages = [
@@ -12,6 +12,7 @@ brain-games = "brain_games.scripts.brain_games:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+prompt = "^0.4.1"
 
 [tool.poetry.dev-dependencies]
 
