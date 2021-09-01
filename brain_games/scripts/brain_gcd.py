@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from brain_games import cli
 from brain_games.games.gcd import start_game
 

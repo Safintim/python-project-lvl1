@@ -58,7 +58,6 @@ def get_random_number(range_numbers=RANGE_NUMBERS):
 def make_game(
     instruction_text,
     make_question,
-    format_question,
     is_int_answer=True,
 ):
     def run_game(user_name):
@@ -67,7 +66,7 @@ def make_game(
         count_correct_answers = 0
         while not is_win(count_correct_answers):
             question = make_question()
-            print_question(format_question(question))
+            print_question(question.to_str)
             user_answer = get_user_answer(is_int_answer)
             if not is_correct_answer(user_answer, question.answer):
                 print_wrong(user_answer, question.answer, user_name)

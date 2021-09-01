@@ -13,7 +13,7 @@ OPERATIONS = {
 }
 Question = namedtuple(
     'Question',
-    ('term1', 'term2', 'op', 'action', 'answer',),
+    ('term1', 'term2', 'op', 'action', 'answer', 'to_str'),
 )
 
 
@@ -31,16 +31,12 @@ def make_question():
         term2=term2,
         op=op,
         action=action,
-        answer=action(term1, term2)
+        answer=action(term1, term2),
+        to_str='{0} {1} {2}'.format(term1, op, term2)
     )
-
-
-def format_question(question):
-    return '{0} {1} {2}'.format(question.term1, question.op, question.term2)
 
 
 start_game = engine.make_game(
     instruction_text=INSTRUCTION_TEXT,
     make_question=make_question,
-    format_question=format_question,
 )

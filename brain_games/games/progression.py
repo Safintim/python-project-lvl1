@@ -9,7 +9,7 @@ RANGE_PROGRESSION_STEP = (1, 10)
 PROGRESSION_SIZE = 10
 Question = namedtuple(
     'Question',
-    ('progression', 'answer',),
+    ('progression', 'answer', 'to_str'),
 )
 
 
@@ -26,15 +26,10 @@ def make_question():
     answer = progression[missing_index]
     progression[missing_index] = '..'
     progression = ' '.join(str(item) for item in progression)
-    return Question(progression=progression, answer=answer)
-
-
-def format_question(question):
-    return question.progression
+    return Question(progression=progression, answer=answer, to_str=progression)
 
 
 start_game = engine.make_game(
     instruction_text=INSTRUCTION_TEXT,
     make_question=make_question,
-    format_question=format_question,
 )
