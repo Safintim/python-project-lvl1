@@ -9,6 +9,9 @@ def is_prime(number):
     if common.is_even(number):
         return number == 2
 
+    if number < 2:
+        return False
+
     div = 3
     while div * div < number and number % div != 0:
         div += 3
@@ -18,5 +21,5 @@ def is_prime(number):
 
 start_game = engine.make_game(
     instruction_text=INSTRUCTION_TEXT,
-    make_question=common.make_question(predicate=is_prime),
+    make_question=lambda: common.make_question(predicate=is_prime),
 )
