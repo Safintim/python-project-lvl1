@@ -36,14 +36,6 @@ def make_question():
     )
 
 
-def is_correct_answer(user_answer, correct_answer):
-    return user_answer == correct_answer
-
-
-def is_ok_answer(user_answer, correct_answer):
-    return is_correct_answer(user_answer, correct_answer)
-
-
 def run(user_name):
     engine.print_instruction(INSTRUCTION_TEXT)
 
@@ -57,7 +49,7 @@ def run(user_name):
         correct_answer = get_correct_answer(
             question.term1, question.term2, question.action,
         )
-        if not is_ok_answer(user_answer, correct_answer):
+        if not engine.is_correct_answer(user_answer, correct_answer):
             engine.print_wrong(user_answer, correct_answer, user_name)
             break
         count_correct_answers += 1

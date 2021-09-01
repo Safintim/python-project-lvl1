@@ -16,6 +16,10 @@ def is_win(count_correct_answers):
     return count_correct_answers == COUNT_CORRECT_ANSWERS
 
 
+def is_correct_answer(user_answer, correct_answer):
+    return user_answer == correct_answer
+
+
 def print_instruction(instruction):
     print(instruction)
 
