@@ -20,33 +20,67 @@ def get_random_number(range_numbers=RANGE_NUMBERS):
     return random.randint(*range_numbers)
 
 
+def get_correct_answer(number):
+    return YES_TEXT if is_even(number) else NO_TEXT
+
+
+def get_user_answer():
+    return prompt.string(USER_ANSWER_TEXT)
+
+
 def is_even(number):
     return number % 2 == 0
 
 
-def get_correct_answer(number):
-    return YES_TEXT if is_even(number) else NO_TEXT
+def is_valid_answer(user_answer):
+    return user_answer in VALID_ANSWERS
+
+
+def is_correct_answer(user_answer, correct_answer):
+    return user_answer == correct_answer
+
+
+def is_ok_answer(user_answer, correct_answer):
+    checks = (
+        is_valid_answer(user_answer),
+        is_correct_answer(user_answer, correct_answer),
+    )
+    return all(checks)
+
+
+def is_win(count_correct_answers):
+    return count_correct_answers == COUNT_CORRECT_ANSWERS
+
+
+def print_question(number):
+    print(QUESTION_PATTERN.format(number))
+
+
+def print_wrong(user_answer, correct_answer, user_name):
+    print(WRONG_ANSWER_PATTERN.format(user_answer, correct_answer, user_name))
+
+
+def print_correct():
+    print(CORRECT_ANSWER_TEXT)
+
+
+def print_congratulations(user_name):
+    print(CONGRATULATION_PATTERN.format(user_name))
 
 
 def run(user_name):
     print(INSTRUCTION_TEXT)
 
     count_correct_answers = 0
-    while True:
+    while not is_win(count_correct_answers):
         number = get_random_number()
-        print(QUESTION_PATTERN.format(number))
-
-        user_answer = prompt.string(USER_ANSWER_TEXT)
+        print_question(number)
+        user_answer = get_user_answer()
         correct_answer = get_correct_answer(number)
-
-        if user_answer not in VALID_ANSWERS or user_answer != correct_answer:
-            print(WRONG_ANSWER_PATTERN.format(
-                user_answer, correct_answer, user_name))
-            return
-
+        if not is_ok_answer(user_answer, correct_answer):
+            print_wrong(user_answer, correct_answer, user_name)
+            break
         count_correct_answers += 1
-        print(CORRECT_ANSWER_TEXT)
-
-        if count_correct_answers == COUNT_CORRECT_ANSWERS:
-            print(CONGRATULATION_PATTERN.format(user_name))
-            return
+        print_correct()
+    else:
+        print_congratulations(user_name)
