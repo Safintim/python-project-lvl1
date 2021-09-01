@@ -8,16 +8,14 @@ YES_TEXT = 'yes'
 NO_TEXT = 'no'
 Question = namedtuple(
     'Question',
-    ('number', ),
+    ('number', 'answer',),
 )
 
 
-def get_correct_answer(number):
-    return YES_TEXT if is_even(number) else NO_TEXT
-
-
 def make_question():
-    return Question(number=engine.get_random_number())
+    number = engine.get_random_number()
+    answer = YES_TEXT if is_even(number) else NO_TEXT
+    return Question(number=number, answer=answer)
 
 
 def is_even(number):
@@ -32,9 +30,8 @@ def run(user_name):
         question = make_question()
         engine.print_question(question.number)
         user_answer = engine.get_user_answer()
-        correct_answer = get_correct_answer(question.number)
-        if not engine.is_correct_answer(user_answer, correct_answer):
-            engine.print_wrong(user_answer, correct_answer, user_name)
+        if not engine.is_correct_answer(user_answer, question.answer):
+            engine.print_wrong(user_answer, question.answer, user_name)
             break
         count_correct_answers += 1
         engine.print_correct()

@@ -13,7 +13,7 @@ OPERATIONS = {
 }
 Question = namedtuple(
     'Question',
-    ('term1', 'term2', 'op', 'action'),
+    ('term1', 'term2', 'op', 'action', 'answer',),
 )
 
 
@@ -22,17 +22,16 @@ def get_random_operation():
     return op, action
 
 
-def get_correct_answer(operand1, operand2, action):
-    return action(operand1, operand2)
-
-
 def make_question():
+    term1 = engine.get_random_number(),
+    term2 = engine.get_random_number(),
     op, action = get_random_operation()
     return Question(
-        term1=engine.get_random_number(),
-        term2=engine.get_random_number(),
+        term1=term1,
+        term2=term2,
         op=op,
         action=action,
+        answer=action(term1, term2)
     )
 
 
@@ -46,11 +45,8 @@ def run(user_name):
             '{0} {1} {2}'.format(question.term1, question.op, question.term2),
         )
         user_answer = engine.get_user_answer(is_int=True)
-        correct_answer = get_correct_answer(
-            question.term1, question.term2, question.action,
-        )
-        if not engine.is_correct_answer(user_answer, correct_answer):
-            engine.print_wrong(user_answer, correct_answer, user_name)
+        if not engine.is_correct_answer(user_answer, question.answer):
+            engine.print_wrong(user_answer, question.answer, user_name)
             break
         count_correct_answers += 1
         engine.print_correct()
