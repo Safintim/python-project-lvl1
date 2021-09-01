@@ -2,6 +2,8 @@ install:
 	poetry install
 brain-games:
 	poetry run brain-games
+clean-build:
+	rm -rf dist
 build:
 	poetry build
 publish:
