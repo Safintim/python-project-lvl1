@@ -52,6 +52,10 @@ def is_win(count_correct_answers):
     return count_correct_answers == COUNT_CORRECT_ANSWERS
 
 
+def print_instruction():
+    print(INSTRUCTION_TEXT)
+
+
 def print_question(number):
     print(QUESTION_PATTERN.format(number))
 
@@ -69,7 +73,7 @@ def print_congratulations(user_name):
 
 
 def run(user_name):
-    print(INSTRUCTION_TEXT)
+    print_instruction()
 
     count_correct_answers = 0
     while not is_win(count_correct_answers):
