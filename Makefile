@@ -8,6 +8,9 @@ build:
 	poetry build
 publish:
 	poetry publish --dry-run
+publish-testpypi:
+	poetry config repositories.testpypi https://test.pypi.org/legacy/
+	poetry publish -r testpypi 
 package-install:
 	python3 -m pip install --user dist/*.whl
 lint:

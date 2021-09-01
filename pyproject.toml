@@ -1,11 +1,17 @@
 [tool.poetry]
-name = "hexlet-code"
-version = "0.1.7"
-description = ""
+name = "safintim-brain-games"
+version = "0.1.9"
+description = "Simple console games created in the course of training on hexlet.io"
 authors = ["Safintim <timurtlt96@mail.ru>"]
 packages = [
     { include = "brain_games" },
 ]
+classifiers = [
+    "Environment :: Console",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+repository = "https://github.com/Safintim/python-project-lvl1.git"
 
 [tool.poetry.scripts]
 brain-games = "brain_games.scripts.brain_games:main"
