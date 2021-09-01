@@ -6,7 +6,7 @@ from brain_games.games import brain_gcd
 def main():
     print('Welcome to the Brain Games!')
     user_name = cli.welcome_user()
-    brain_gcd.run(user_name)
+    brain_gcd.start_game(user_name)
 
 
 if __name__ == '__main__':

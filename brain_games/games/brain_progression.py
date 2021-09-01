@@ -29,18 +29,12 @@ def make_question():
     return Question(progression=progression, answer=answer)
 
 
-def run(user_name):
-    engine.print_instruction(INSTRUCTION_TEXT)
+def format_question(question):
+    return question.progression
 
-    count_correct_answers = 0
-    while not engine.is_win(count_correct_answers):
-        question = make_question()
-        engine.print_question(question.progression)
-        user_answer = engine.get_user_answer(is_int=True)
-        if not engine.is_correct_answer(user_answer, question.answer):
-            engine.print_wrong(user_answer, question.answer, user_name)
-            break
-        count_correct_answers += 1
-        engine.print_correct()
-    else:
-        engine.print_congratulations(user_name)
+
+start_game = engine.make_game(
+    instruction_text=INSTRUCTION_TEXT,
+    make_question=make_question,
+    format_question=format_question,
+)
