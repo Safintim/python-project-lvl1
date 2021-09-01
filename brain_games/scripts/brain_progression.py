@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 from brain_games import cli
-from brain_games.games import brain_progression
+from brain_games.games.progression import start_game
 
 
 def main():
-    print('Welcome to the Brain Games!')
-    user_name = cli.welcome_user()
-    brain_progression.start_game(user_name)
+    start_game(cli.get_user_name())
 
 
 if __name__ == '__main__':
