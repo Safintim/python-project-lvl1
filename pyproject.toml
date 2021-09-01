@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "safintim-brain-games"
+name = "hexlet-code"
 version = "0.1.9"
 description = "Simple console games created in the course of training on hexlet.io"
 authors = ["Safintim <timurtlt96@mail.ru>"]
