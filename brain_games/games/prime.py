@@ -19,7 +19,8 @@ def is_prime(number):
     return div * div > number
 
 
-start_game = engine.make_game(
-    instruction_text=INSTRUCTION_TEXT,
-    make_question=lambda: common.make_question(predicate=is_prime),
-)
+def start():
+    return engine.run_game(
+        instruction_text=INSTRUCTION_TEXT,
+        make_question=lambda: common.make_question(predicate=is_prime),
+    )

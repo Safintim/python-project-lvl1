@@ -55,25 +55,26 @@ def get_random_number(range_numbers=RANGE_NUMBERS):
     return random.randint(*range_numbers)
 
 
-def make_game(
-    instruction_text,
-    make_question,
-    is_int_answer=True,
-):
-    def run_game(user_name):
-        print_instruction(instruction_text)
+def get_user_name():
+    print('Welcome to the Brain Games!')
+    name = prompt.string('May I have your name? ')
+    print('Hello, {}!'.format(name))
+    return name
 
-        count_correct_answers = 0
-        while not is_win(count_correct_answers):
-            question = make_question()
-            print_question(question.to_str)
-            user_answer = get_user_answer(is_int_answer)
-            if not is_correct_answer(user_answer, question.answer):
-                print_wrong(user_answer, question.answer, user_name)
-                break
-            count_correct_answers += 1
-            print_correct()
-        else:
-            print_congratulations(user_name)
 
-    return run_game
+def run_game(instruction_text, make_question, is_int_answer=True):
+    user_name = get_user_name()
+    print_instruction(instruction_text)
+
+    count_correct_answers = 0
+    while not is_win(count_correct_answers):
+        question = make_question()
+        print_question(question.to_str)
+        user_answer = get_user_answer(is_int_answer)
+        if not is_correct_answer(user_answer, question.answer):
+            print_wrong(user_answer, question.answer, user_name)
+            break
+        count_correct_answers += 1
+        print_correct()
+    else:
+        print_congratulations(user_name)

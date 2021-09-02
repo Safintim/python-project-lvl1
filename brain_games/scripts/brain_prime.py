@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-from brain_games import cli
-from brain_games.games.prime import start_game
+from brain_games.games import prime
 
 
 def main():
-    start_game(cli.get_user_name())
+    prime.start()
 
 
 if __name__ == '__main__':

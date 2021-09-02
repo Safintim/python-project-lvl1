@@ -29,7 +29,8 @@ def make_question():
     return Question(progression=progression, answer=answer, to_str=progression)
 
 
-start_game = engine.make_game(
-    instruction_text=INSTRUCTION_TEXT,
-    make_question=make_question,
-)
+def start():
+    return engine.run_game(
+        instruction_text=INSTRUCTION_TEXT,
+        make_question=make_question,
+    )

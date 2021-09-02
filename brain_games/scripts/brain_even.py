@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-from brain_games import cli
-from brain_games.games.even import start_game
+from brain_games.games import even
 
 
 def main():
-    start_game(cli.get_user_name())
+    even.start()
 
 
 if __name__ == '__main__':
